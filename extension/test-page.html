@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FreezeShield Test Page</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>FreezeShield Test Page</h1>
+
+<p>Type some information below and we'll test state preservation.</p>
+
+<label>Name</label>
+<input type="text" id="name" name="name">
+
+<label>Email</label>
+<input type="email" id="email" name="email">
+
+<label>Course</label>
+<select id="course" name="course">
+    <option value="">Select course</option>
+    <option value="CSE">Computer Science</option>
+    <option value="IT">Information Technology</option>
+    <option value="AI">Artificial Intelligence</option>
+</select>
+
+<label>Important Notes</label>
+<textarea id="notes" name="notes"></textarea>
+
+</body>
+</html>

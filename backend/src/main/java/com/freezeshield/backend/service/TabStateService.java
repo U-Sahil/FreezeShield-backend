@@ -4,6 +4,7 @@ import com.freezeshield.backend.entity.TabState;
 import com.freezeshield.backend.repository.TabStateRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -17,29 +18,36 @@ public class TabStateService {
 
     public TabState saveTabState(TabState tabState) {
 
-        tabState.setSavedAt(java.time.LocalDateTime.now());
+        tabState.setSavedAt(LocalDateTime.now());
 
-        return tabStateRepository
-                .findTopBySessionIdAndTabUrlOrderBySavedAtDesc(
-                        tabState.getSessionId(),
-                        tabState.getTabUrl()
-                )
-                .map(existingState -> {
+        Optional<TabState> existingState =
+                tabStateRepository
+                        .findTopBySessionIdAndTabUrlOrderBySavedAtDesc(
+                                tabState.getSessionId(),
+                                tabState.getTabUrl()
+                        );
 
-                    existingState.setFormData(tabState.getFormData());
-                    existingState.setScrollX(tabState.getScrollX());
-                    existingState.setScrollY(tabState.getScrollY());
-                    existingState.setSavedAt(tabState.getSavedAt());
+        if (existingState.isPresent()) {
 
-                    return tabStateRepository.save(existingState);
-                })
-                .orElseGet(() -> tabStateRepository.save(tabState));
+            TabState state = existingState.get();
+
+            state.setFormData(tabState.getFormData());
+            state.setScrollX(tabState.getScrollX());
+            state.setScrollY(tabState.getScrollY());
+            state.setSavedAt(tabState.getSavedAt());
+
+            return tabStateRepository.save(state);
+        }
+
+        return tabStateRepository.save(tabState);
     }
+
 
     public Optional<TabState> getLatestTabState(
             String sessionId,
             String tabUrl
     ) {
+
         return tabStateRepository
                 .findTopBySessionIdAndTabUrlOrderBySavedAtDesc(
                         sessionId,

@@ -53,7 +53,7 @@ function getPageState() {
     const sessionId = getSessionId();
 
     const elements = document.querySelectorAll(
-        "input, textarea, select, [contenteditable='true']"
+        "input:not([type='password']), textarea, select, [contenteditable='true']"
     );
 
     const fields = [];

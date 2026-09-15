@@ -1,37 +1,61 @@
 package com.freezeshield.backend.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tab_states")
+@Table(
+        name = "tab_states",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "unique_session_url",
+                        columnNames = {"session_id", "tab_url"}
+                )
+        }
+)
 public class TabState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank
+    @Size(max = 2048)
+    @Column(name = "tab_url", nullable = false, length = 2048)
     private String tabUrl;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "form_data", columnDefinition = "TEXT")
     private String formData;
 
-    @Column
-    private String sessionId;
-
+    @Column(name = "scrollx", nullable = false)
     private int scrollX;
 
+    @Column(name = "scrolly", nullable = false)
     private int scrollY;
 
+    @Column(name = "saved_at", nullable = false)
     private LocalDateTime savedAt;
 
-    // Constructors
+    @NotBlank
+    @Size(max = 100)
+    @Column(name = "session_id", nullable = false, length = 100)
+    private String sessionId;
+
+
+    // ==========================================
+    // CONSTRUCTOR
+    // ==========================================
+
     public TabState() {
     }
 
-    // Getters and Setters
+
+    // ==========================================
+    // GETTERS AND SETTERS
+    // ==========================================
 
     public Long getId() {
         return id;

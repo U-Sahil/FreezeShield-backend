@@ -6,7 +6,7 @@ console.log("FreezeShield background service worker started!");
 // ==========================================
 
 const BACKEND_URL =
-    "http://localhost:8080/api/v1/tab-states";
+    "https://freezeshield-backend.onrender.com/api/v1/tab-states";
 
 
 // ==========================================

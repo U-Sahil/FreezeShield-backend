@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/tab-states")
-@CrossOrigin(origins = "*")
 public class TabStateController {
 
     private final TabStateService tabStateService;

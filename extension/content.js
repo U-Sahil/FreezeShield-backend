@@ -170,7 +170,7 @@ function getPageState() {
 
     const elements =
         document.querySelectorAll(
-            "input, textarea, select, [contenteditable='true']"
+            "input:not([type='file']):not([type='hidden']):not([type='password']), textarea, select, [contenteditable='true']"
         );
 
 

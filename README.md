@@ -1,4 +1,4 @@
-# 🛡FreezeShield
+# FreezeShield
 
 > Automatically preserves important webpage state so users can recover their work after page reloads, tab recovery, or browser tab discard.
 
@@ -36,7 +36,7 @@ When the page is loaded again, FreezeShield identifies the page session, retriev
 
 ---
 
-# 🏗️ Architecture
+#  Architecture
 
 ```text
 ┌──────────────────────────────┐
@@ -97,7 +97,8 @@ IntelliJ IDEA
 PostgreSQL / pgAdmin
 Postman
 Git / GitHub
-✨ Key Features
+
+ Key Features
 1. Automatic State Capture
 
 FreezeShield captures important webpage state including:
@@ -185,7 +186,7 @@ INSERT
 
 This prevents unnecessary duplicate records.
 
-🧠 Important Engineering Decision: Why Not tabId?
+ Important Engineering Decision: Why Not tabId?
 
 The initial implementation used Chrome's tabId as the long-lived identity of a page.
 
@@ -199,7 +200,7 @@ sessionStorage
 
 This identifier survived the tested discard/recovery flow and allowed the restored page to locate its previous state.
 
-🔄 Recovery Workflow
+ Recovery Workflow
                     PAGE LOAD
                        │
                        ▼
@@ -226,7 +227,7 @@ This identifier survived the tested discard/recovery flow and allowed the restor
                  │
                  ▼
           Page recovered
-💾 Database Design
+ Database Design
 
 Table:
 
@@ -284,7 +285,7 @@ or:
 
 when no saved state exists.
 
-🔐 Validation
+ Validation
 
 The API validates incoming requests using Spring Bean Validation.
 
@@ -308,7 +309,7 @@ GlobalExceptionHandler
 
 which returns structured validation errors.
 
-🔒 Security Considerations
+ Security Considerations
 
 FreezeShield is designed to minimize sensitive data capture.
 
@@ -334,7 +335,8 @@ Environment-based secrets
 Database access controls
 Appropriate API rate limiting
 Minimal required extension permissions
-🧪 Testing
+
+ Testing
 
 FreezeShield has been tested against several scenarios.
 
@@ -392,7 +394,7 @@ while the values were updated.
 
 This confirmed that the service performs an update instead of creating another row.
 
-🧪 Local Setup
+Local Setup
 Prerequisites
 
 Install:
@@ -464,7 +466,7 @@ Reload the page or test Chrome tab recovery.
 
 FreezeShield should restore the saved state.
 
-📁 Project Structure
+Project Structure
 FreezeShield/
 │
 ├── .gitignore
@@ -504,7 +506,8 @@ FreezeShield/
     ├── background.js
     ├── content.js
     └── test-page.html
-🚀 Future Improvements
+
+ Future Improvements
 
 Potential future improvements include:
 
